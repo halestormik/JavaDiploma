@@ -91,7 +91,7 @@ public class CreditAccountTest {
     // четвертый баг-репорт. Сумма пополнения может быть нулевой, операция должна возвращать true
     public void shouldAddSuccessfulIfZeroAmount() { // операция успешного пополнения счета на нулевую сумму
         Account myCreditAccount = new CreditAccount(500, 300, 15);
-        
+
         boolean expected = true;
         boolean actual = myCreditAccount.add(0);
 
@@ -139,5 +139,10 @@ public class CreditAccountTest {
         int actualPercent = myCreditAccount.yearChange(); // рассчитанный процент -30
 
         Assertions.assertEquals(expectedPercent, actualPercent);
+    }
+
+    @Test
+    public void shouldCreateCreditAccountWithZeroRate() { // проверка выпадения исключения при нулевой ставке
+        Account myCreditAccount = new CreditAccount(500, 300, 0);
     }
 }
