@@ -39,15 +39,19 @@ public class CreditAccountTest {
     }
 
     @Test
+    // девятый баг-репорт. При итоговом балансе после покупки равном кредитному лимиту операция возвращает false
     public void shouldPaySuccessfullAndExpectedBalanceEqualsLimit() { // итоговый баланс равен лимиту
         Account myCreditAccount = new CreditAccount(500, 300, 15);
 
-        myCreditAccount.pay(800);
+        //myCreditAccount.pay(800);
+        boolean expected = true; // ожидаем, что операция завершится true
+        boolean actual = myCreditAccount.pay(800); // операция завершается false
 
         int expectedBalance = -300; // ожидаемый баланс: 500 - 80  = -300
         int actualBalance = myCreditAccount.getBalance(); // Фактический баланс -300
 
         Assertions.assertEquals(expectedBalance, actualBalance);
+        Assertions.assertEquals(expected, actual);
     }
 
     @Test
@@ -142,7 +146,22 @@ public class CreditAccountTest {
     }
 
     @Test
+    // шестой баг-репорт. выпадение исключения при нулевой ставке (по условию ставка должна быть неотрицательной)
     public void shouldCreateCreditAccountWithZeroRate() { // проверка выпадения исключения при нулевой ставке
         Account myCreditAccount = new CreditAccount(500, 300, 0);
+    }
+
+    @Test
+    // седьмой баг-репорт. выпадение исключения при нулевом начальном балансе (по условию начальный баланс должен быть неотрицательным)
+    public void shouldCreateCreditAccountWithZeroInitialBalance() { // проверка выпадения исключения при нулевом начальном балансе
+       Assertions.assertThrows(IllegalArgumentException.class,
+               () -> new CreditAccount(-500, 300, 15));
+    }
+
+    @Test
+    // восьмой баг-репорт. выпадение исключения при нулевом кредитном лимите (по условию кредитный лимит должен быть неотрицательным)
+    public void shouldCreateCreditAccountWithZeroCreditLimit() { // проверка выпадения исключения при нулевом кредитном лимите
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> new CreditAccount(500, -300, 15));
     }
 }
