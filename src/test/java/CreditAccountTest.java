@@ -152,15 +152,15 @@ public class CreditAccountTest {
     }
 
     @Test
-    // седьмой баг-репорт. выпадение исключения при нулевом начальном балансе (по условию начальный баланс должен быть неотрицательным)
-    public void shouldCreateCreditAccountWithZeroInitialBalance() { // проверка выпадения исключения при нулевом начальном балансе
+    // седьмой баг-репорт. выпадение исключения при отрицательном начальном балансе (по условию начальный баланс должен быть неотрицательным)
+    public void shouldCreateCreditAccountWithZeroInitialBalance() { // проверка выпадения исключения при отрицательном начальном балансе
        Assertions.assertThrows(IllegalArgumentException.class,
                () -> new CreditAccount(-500, 300, 15));
     }
 
     @Test
-    // восьмой баг-репорт. выпадение исключения при нулевом кредитном лимите (по условию кредитный лимит должен быть неотрицательным)
-    public void shouldCreateCreditAccountWithZeroCreditLimit() { // проверка выпадения исключения при нулевом кредитном лимите
+    // восьмой баг-репорт. выпадение исключения при отрицательном кредитном лимите (по условию кредитный лимит должен быть неотрицательным)
+    public void shouldCreateCreditAccountWithZeroCreditLimit() { // проверка выпадения исключения при отрицательном кредитном лимите
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> new CreditAccount(500, -300, 15));
     }
