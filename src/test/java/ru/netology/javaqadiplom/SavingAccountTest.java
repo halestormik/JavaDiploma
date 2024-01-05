@@ -146,7 +146,7 @@ public class SavingAccountTest {
     @Test
     public void shouldSavingAccountWithNegativeInitialBalance(){
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> new SavingAccount( -200, 1_000,10_000,5));
+                () -> new SavingAccount( -2_000, 1_000,10_000,5));
     }
 
     @Test
