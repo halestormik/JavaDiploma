@@ -76,17 +76,6 @@ public class SavingAccountTest {
         Assertions.assertEquals(2_500, account.getBalance()); // проверка итогового баланса
         Assertions.assertEquals(expected, actual); // проверка статуса, который возвращает операция
     }
-//    @Test
-//    public void shouldPayBelowBalance(){  // проверка покупки со счета на сумму выше баланса
-//        SavingAccount account = new SavingAccount(
-//                5_000,
-//                1_000,
-//                10_000,
-//                5
-//        );
-//        account.pay(6_000);
-//        Assertions.assertEquals(5_000, account.getBalance());
-//    }
     @Test
     public void shouldPayBelowMinLimit(){   // проверка покупки со счета до суммы меньше минимального баланса
         SavingAccount account = new SavingAccount(
