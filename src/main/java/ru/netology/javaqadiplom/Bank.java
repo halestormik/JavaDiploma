@@ -1,7 +1,7 @@
 package ru.netology.javaqadiplom;
 
-public class Bank {//extends Account {
-    /*@Override
+public class Bank extends Account {
+    @Override
     public boolean pay(int amount) {
         if (amount < 0) {
             return false;
@@ -22,7 +22,7 @@ public class Bank {//extends Account {
         balance = balance + amount;
         return true;
     }
-*/
+
     /**
      * Операция перевода указанной суммы с одного счёта на другой.
      * Если операция прошла успешно, то баланс счёта from должен
@@ -41,7 +41,9 @@ public class Bank {//extends Account {
         }
         if (from.pay(amount)) {
             to.add(amount);
+            return true;
+        } else {
+            return false;
         }
-        return true;
     }
 }
