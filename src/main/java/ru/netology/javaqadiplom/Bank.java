@@ -1,7 +1,6 @@
 package ru.netology.javaqadiplom;
 
 public class Bank extends Account {
-
     @Override
     public boolean pay(int amount) {
         if (amount < 0) {
