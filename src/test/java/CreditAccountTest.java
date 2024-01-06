@@ -5,7 +5,7 @@ import ru.netology.javaqadiplom.CreditAccount;
 
 public class CreditAccountTest {
 
-   /* @Test
+    @Test
     public void shouldCreateCreditAccountWithNegativeRate() { // проверка выпадения исключения при отрицательной ставке
 
         Assertions.assertThrows(IllegalArgumentException.class,
@@ -47,7 +47,7 @@ public class CreditAccountTest {
         boolean expected = true; // ожидаем, что операция завершится true
         boolean actual = myCreditAccount.pay(800); // операция завершается false
 
-        int expectedBalance = -300; // ожидаемый баланс: 500 - 80  = -300
+        int expectedBalance = -300; // ожидаемый баланс: 500 - 800  = -300
         int actualBalance = myCreditAccount.getBalance(); // Фактический баланс -300
 
         Assertions.assertEquals(expectedBalance, actualBalance);
@@ -137,9 +137,9 @@ public class CreditAccountTest {
 
     @Test
     public void shouldNotAddPercentsIfBalanceIsNegative() { // баланс отрицательный, проценты начисляются по ставке
-        Account myCreditAccount = new CreditAccount(-200, 300, 15);
-
-        int expectedPercent = -30; // ожидаемый процент нулевой
+        Account myCreditAccount = new CreditAccount(500, 300, 15);
+        myCreditAccount.pay(800);
+        int expectedPercent = -45; // ожидаемый процент нулевой
         int actualPercent = myCreditAccount.yearChange(); // рассчитанный процент -30
 
         Assertions.assertEquals(expectedPercent, actualPercent);
@@ -154,8 +154,8 @@ public class CreditAccountTest {
     @Test
     // седьмой баг-репорт. выпадение исключения при отрицательном начальном балансе (по условию начальный баланс должен быть неотрицательным)
     public void shouldCreateCreditAccountWithZeroInitialBalance() { // проверка выпадения исключения при отрицательном начальном балансе
-       Assertions.assertThrows(IllegalArgumentException.class,
-               () -> new CreditAccount(-500, 300, 15));
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> new CreditAccount(-500, 300, 15));
     }
 
     @Test
@@ -163,5 +163,5 @@ public class CreditAccountTest {
     public void shouldCreateCreditAccountWithZeroCreditLimit() { // проверка выпадения исключения при отрицательном кредитном лимите
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> new CreditAccount(500, -300, 15));
-    }*/
+    }
 }
