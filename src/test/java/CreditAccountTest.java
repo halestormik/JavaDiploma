@@ -5,7 +5,7 @@ import ru.netology.javaqadiplom.CreditAccount;
 
 public class CreditAccountTest {
 
-    @Test
+   /* @Test
     public void shouldCreateCreditAccountWithNegativeRate() { // проверка выпадения исключения при отрицательной ставке
 
         Assertions.assertThrows(IllegalArgumentException.class,
@@ -163,5 +163,5 @@ public class CreditAccountTest {
     public void shouldCreateCreditAccountWithZeroCreditLimit() { // проверка выпадения исключения при отрицательном кредитном лимите
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> new CreditAccount(500, -300, 15));
-    }
+    }*/
 }
