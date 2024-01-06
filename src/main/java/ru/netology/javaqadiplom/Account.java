@@ -4,15 +4,15 @@ public class Account {
     protected int balance;
     protected int rate;
 
-    public boolean pay(int amount) {
+    public boolean pay(int amount) { // покупка
         return false;
     }
 
-    public boolean add(int amount) {
+    public boolean add(int amount) { // пополнение
         return false;
     }
 
-    public int yearChange() {
+    public int yearChange() { // прогноз процентов за год
         return 0;
     }
 
