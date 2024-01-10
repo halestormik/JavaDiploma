@@ -139,8 +139,8 @@ public class CreditAccountTest {
     public void shouldNotAddPercentsIfBalanceIsNegative() { // баланс отрицательный, проценты начисляются по ставке
         Account myCreditAccount = new CreditAccount(500, 300, 15);
         myCreditAccount.pay(800);
-        int expectedPercent = -45; // ожидаемый процент нулевой
-        int actualPercent = myCreditAccount.yearChange(); // рассчитанный процент -30
+        int expectedPercent = -45; // ожидаемый процент -45
+        int actualPercent = myCreditAccount.yearChange(); // рассчитанный процент -45
 
         Assertions.assertEquals(expectedPercent, actualPercent);
     }
@@ -163,5 +163,18 @@ public class CreditAccountTest {
     public void shouldCreateCreditAccountWithZeroCreditLimit() { // проверка выпадения исключения при отрицательном кредитном лимите
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> new CreditAccount(500, -300, 15));
+    }
+
+    @Test
+    // десятый баг-репорт. Особенности целочисленного деления
+    public void shouldCalculatePercentsIfBalanceBelow100() { // проверка расчета процентов при итоговом балансе больше -100
+        Account myCreditAccount = new CreditAccount(100, 300, 50);
+
+        myCreditAccount.pay(180);
+
+        int expectedPercent = -40; // ожидаемый процент -40
+        int actualPercent = myCreditAccount.yearChange(); // рассчитанный процент 0
+
+        Assertions.assertEquals(expectedPercent, actualPercent);
     }
 }
