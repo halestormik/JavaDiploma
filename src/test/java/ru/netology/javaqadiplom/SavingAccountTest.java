@@ -205,5 +205,15 @@ public class SavingAccountTest {
 
         Assertions.assertEquals(expected, actual);
     }
+    @Test
+    public void shouldAddRate(){
+        SavingAccount account = new SavingAccount(
+                99,
+                0,
+                10_000,
+                80
+        );
+        Assertions.assertEquals(79,account.yearChange());
+    }
 }
 
